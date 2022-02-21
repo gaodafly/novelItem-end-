@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="bg-light">
+    <div class="container">
+        <%- include('./header.html') %>
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://img0.baidu.com/it/u=3308512675,4016712802&fm=26&fmt=auto" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://img2.baidu.com/it/u=2056533819,601526919&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0137125be8316aa801209252689843.jpg%402o.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648034922&t=3f34ae9b1277648d245d4aa2117fcdbe"
+                            class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01fd7359226cf0b5b3086ed49d26bf.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1648035058&t=e1fc8583ea91d6706015875eb3aa7ef9"
+                            class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+
+            <div class="container d-flex mt-5 newadd_warp">
+                <h2 class="mb-4">热门推荐</h2>
+                <button class="btn btn-success newadd" onclick="window.location.href='http://localhost:3000/add'">add...</button>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>排行</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>分类</th>
+                        <th>信息</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(item => { %>
+                        <tr>
+                            <td>
+                                <%= item.ranking %>
+                            </td>
+                            <td>
+                                <%= item.name %>
+                            </td>
+                            <td>
+                                <%= item.author %>
+                            </td>
+                            <td>
+                                <%= item.category %>
+                            </td>
+                            <td class="td_info">
+                                <%-item.info.length>45 ? item.info.substr(0,45)+'...':item.info %>
+                            </td>
+                            <td>
+                                <%= item.isDone ? '完本':'连载' %>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" onclick="delevent(<%= item.id %> )">删除</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+
+                    <%  if(page>1){ %>
+                        <li class="page-item"><a class="page-link" href="/?page=<%=page-1 %> ">上一页</a></li>
+                        <%  } %>
+
+
+                            <% for( let index = 1; index <= num; index++ ) { %>
+                                <li class="page-item">
+                                    <a class="page-link" <% if (page==index) { %>
+                                        style= 'background-color:#dee2e6'
+                                    <% } %> href="/?page=<%=index %> ">
+                                        <%= index %>
+                                    </a>
+                                </li>
+                                <% } %>
+
+
+                                    <%  if(page<num){ %>
+                                        <li class="page-item"><a class="page-link" href="/?page=<%=(page-0)+1 %> ">下一页</a></li>
+                                        <%  } %>
+                </ul>
+            </nav>
+
+
+            <%- include('./footer.html')  %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.6/holder.min.js"></script>
+    <script src="/js/public.js"></script>
+</body>
+
+</html>

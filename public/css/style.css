@@ -1,0 +1,22 @@
+.table td,
+.table th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+td:not(.td_info) {
+    width: 140px;
+}
+
+.newadd_warp {
+    justify-content: space-between;
+}
+
+.newadd {
+    height: 35px;
+}
+
+.carousel-inner img {
+    width: 1110px;
+    height: 460px;
+}
