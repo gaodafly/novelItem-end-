@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>cookies</h1>
+    <script>
+        // document.cookie = 'name=胖虎'
+
+        // document.cookie = 'age = 12;path=/'
+
+
+        // let time = new Date().getTime();
+        // // console.log(time)
+        // let time2 = time - 8 * 60 * 60 * 1000
+
+        // let time3 = time2 + 10 * 1000
+
+        // let time4 = new Date(time3);
+        // document.cookie = 'gender = 女; expires=' + time4
+
+
+        // 封装的cookie
+        function setCookie(key, value, expires, path) {
+            let str = `${key}=${value};`
+
+            if (expires) {
+                let time1 = new Date().getTime();
+                let time2 = time1 - 8 * 60 * 60 * 1000
+                let time3 = time2 + expires * 1000
+                let time4 = new Date(time3);
+
+                str += `expires=${time4};`
+            }
+
+            if (path) {
+                str += `path=${path};`
+            }
+            document.cookie = str;
+
+        }
+
+        setCookie('name', '胖虎', 300, '/')
+            // 删除
+            // setCookie('name', 11, -1,'/')
+
+        setCookie('name', '小夫', 300)
+            // 删除
+            // setCookie('name', 11, -1)
+    </script>
+</body>
+
+</html>

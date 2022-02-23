@@ -20,3 +20,7 @@ td:not(.td_info) {
     width: 1110px;
     height: 460px;
 }
+
+.login_failed {
+    display: none;
+}

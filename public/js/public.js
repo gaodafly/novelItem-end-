@@ -7,3 +7,9 @@ function delevent(value) {
         window.location.href = `http://localhost:3000/delItem?id=${value}`
     }
 }
+
+
+function modevent(value) {
+    window.location.href = `http://localhost:3000/modify?id=${value}`
+
+}
